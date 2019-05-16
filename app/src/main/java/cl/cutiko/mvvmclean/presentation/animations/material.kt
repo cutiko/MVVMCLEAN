@@ -16,6 +16,7 @@ fun crossFade(show : View, hide : View) {
     hide.animate().setDuration(DURATION).alpha(TRANSPARENT).setListener(object : SimplifiedListener {
         override fun onAnimationEnd(animation: Animator?) {
             hide.visibility = View.GONE
+            hide.animate().setListener(null)
         }
     }).start()
 }
