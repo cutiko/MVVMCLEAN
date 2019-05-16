@@ -50,4 +50,10 @@ class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotoHolder>() {
 
     }
 
+    fun Photo.safeDescription(fallbackText: String) = when {
+        alt_description != null -> alt_description
+        description != null -> description
+        else -> fallbackText
+    }
+
 }

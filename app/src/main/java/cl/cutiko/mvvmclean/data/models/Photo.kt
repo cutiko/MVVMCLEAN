@@ -10,11 +10,4 @@ data class Photo(
     var user: User? = null,
     var views: Long = 0,
     var download: Long = 0
-) {
-
-    fun safeDescription(fallback : String) = when {
-        alt_description != null -> alt_description
-        description != null -> description
-        else -> fallback
-    }
-}
+)
