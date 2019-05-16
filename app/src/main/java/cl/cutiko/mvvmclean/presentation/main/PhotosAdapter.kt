@@ -4,12 +4,11 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import cl.cutiko.mvvmclean.R
 import cl.cutiko.mvvmclean.data.models.Photo
-import com.squareup.picasso.Picasso
+import cl.cutiko.mvvmclean.presentation.views.LazyImageView
 
 class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotoHolder>() {
 
@@ -38,11 +37,11 @@ class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotoHolder>() {
 
     inner class PhotoHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val imageView  = itemView.findViewById<ImageView>(R.id.photoIv)
+        private val lazyIv  = itemView.findViewById<LazyImageView>(R.id.lazyIv)
         private val textView = itemView.findViewById<TextView>(R.id.descriptionTv)
 
         fun setView(photo: Photo) {
-            Picasso.get().load(photo.urls?.regular).centerCrop().fit().into(imageView)
+            lazyIv.setImage(photo.urls?.regular)
             textView.text = photo.safeDesciption
             textView.setBackgroundColor(Color.parseColor(photo.color))
         }
