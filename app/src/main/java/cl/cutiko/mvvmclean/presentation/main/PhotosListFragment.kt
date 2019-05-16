@@ -13,6 +13,7 @@ import cl.cutiko.mvvmclean.R
 import cl.cutiko.mvvmclean.data.models.Photo
 import cl.cutiko.mvvmclean.domain.usecases.LiveState
 import cl.cutiko.mvvmclean.domain.viewmodels.PhotosViewModel
+import cl.cutiko.mvvmclean.presentation.animations.crossFade
 import kotlinx.android.synthetic.main.fragment_photos_list.*
 
 
@@ -51,8 +52,7 @@ class PhotosListFragment : Fragment(), Observer<LiveState<List<Photo>?>> {
             is LiveState.OnError -> Log.d("CUTIKO_TAG", "PhotosListFragment: ******ERROR******")
             is LiveState.OnSuccess -> {
                 adapter.update(state.result)
-                photosRv.visibility = View.VISIBLE
-                photosPb.visibility = View.GONE
+                crossFade(photosRv, photosPb)
             }
         }
     }
