@@ -17,6 +17,7 @@
         android:layout_height="0dp"/>
 
     <FrameLayout
+        android:visibility="gone"
         android:id="@+id/rtdContainer"
         app:layout_constraintBottom_toTopOf="@id/bottomNav"
         app:layout_constraintTop_toTopOf="parent"

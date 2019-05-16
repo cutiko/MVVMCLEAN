@@ -49,7 +49,11 @@ class PhotosListFragment : Fragment(), Observer<LiveState<List<Photo>?>> {
         when(state) {
             is LiveState.Loading -> Log.d("CUTIKO_TAG", "PhotosListFragment: -----LOADING-----")
             is LiveState.OnError -> Log.d("CUTIKO_TAG", "PhotosListFragment: ******ERROR******")
-            is LiveState.OnSuccess -> state.result?.map { it -> Log.d("CUTIKO_TAG", "${this::javaClass.get().simpleName}: ${it.id}") }
+            is LiveState.OnSuccess -> {
+                adapter.update(state.result)
+                photosRv.visibility = View.VISIBLE
+                photosPb.visibility = View.GONE
+            }
         }
     }
 
