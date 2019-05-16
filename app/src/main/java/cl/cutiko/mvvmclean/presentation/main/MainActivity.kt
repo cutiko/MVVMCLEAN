@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import cl.cutiko.mvvmclean.R
 import cl.cutiko.mvvmclean.domain.viewmodels.PhotosRestViewModel
+import cl.cutiko.mvvmclean.domain.viewmodels.PhotosRtdViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -16,11 +17,17 @@ class MainActivity : AppCompatActivity(),  BottomNavigationView.OnNavigationItem
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         bottomNav.setOnNavigationItemSelectedListener(this)
-        val viewModel = ViewModelProviders.of(this).get(PhotosRestViewModel::class.java)
-        val restPhotos = PhotosListFragment()
+        val restViewModel = ViewModelProviders.of(this).get(PhotosRestViewModel::class.java)
+        val rtdViewModel = ViewModelProviders.of(this).get(PhotosRtdViewModel::class.java)
+        val restPhotos = PhotosListFragment.newInstance()
+        val rtdPhotos = PhotosListFragment.newInstance()
         val transaction = supportFragmentManager.beginTransaction().disallowAddToBackStack()
-        transaction.add(R.id.restContainer, restPhotos).commitNowAllowingStateLoss()
-        restPhotos.setViewModel(viewModel)
+        transaction
+            .add(R.id.restContainer, restPhotos)
+            .add(R.id.rtdContainer, rtdPhotos)
+            .commitNowAllowingStateLoss()
+        restPhotos.setViewModel(restViewModel)
+        rtdPhotos.setViewModel(rtdViewModel)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

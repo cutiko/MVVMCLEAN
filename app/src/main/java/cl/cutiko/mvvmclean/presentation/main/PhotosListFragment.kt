@@ -18,6 +18,11 @@ import kotlinx.android.synthetic.main.fragment_photos_list.*
 
 class PhotosListFragment : Fragment(), Observer<LiveState<List<Photo>?>> {
 
+    companion object {
+        @JvmStatic
+        fun newInstance() = PhotosListFragment()
+    }
+
     private val adapter = PhotosAdapter()
 
     override fun onCreateView(
