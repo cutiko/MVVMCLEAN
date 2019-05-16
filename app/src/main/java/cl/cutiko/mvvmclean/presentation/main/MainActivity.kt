@@ -32,11 +32,11 @@ class MainActivity : AppCompatActivity(),  BottomNavigationView.OnNavigationItem
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.navigation_home -> {
+            R.id.navigation_rest -> {
                 crossFade(restContainer, rtdContainer)
                 return true
             }
-            R.id.navigation_notifications -> {
+            R.id.navigation_rtd -> {
                 crossFade(rtdContainer, restContainer)
                 return true
             }
