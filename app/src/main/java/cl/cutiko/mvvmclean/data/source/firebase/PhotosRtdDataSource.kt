@@ -1,16 +1,15 @@
-package cl.cutiko.mvvmclean.domain.usecases
+package cl.cutiko.mvvmclean.data.source.firebase
 
 import cl.cutiko.mvvmclean.data.models.Photo
 import cl.cutiko.mvvmclean.data.models.PhotosWrapper
-import cl.cutiko.mvvmclean.data.repository.PhotosRepository
-import cl.cutiko.mvvmclean.data.source.firebase.mvvm
+import cl.cutiko.mvvmclean.data.repository.PhotosDataSource
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-class RtdPhotosUseCase : PhotosRepository {
+class PhotosRtdDataSource : PhotosDataSource {
 
     override suspend fun getPhotos(): List<Photo>? {
         return suspendCoroutine { continuation ->
