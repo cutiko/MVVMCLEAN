@@ -8,9 +8,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import cl.cutiko.mvvmclean.R
 import cl.cutiko.mvvmclean.data.models.Photo
-import cl.cutiko.mvvmclean.data.source.rest.PhotosRestDataSource
 import cl.cutiko.mvvmclean.domain.usecases.LiveState
-import cl.cutiko.mvvmclean.presentation.viewmodels.RestPhotosViewModel
+import cl.cutiko.mvvmclean.domain.viewmodels.PhotosRestViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -20,9 +19,9 @@ class MainActivity : AppCompatActivity(),  BottomNavigationView.OnNavigationItem
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         bottomNav.setOnNavigationItemSelectedListener(this)
-        val viewModel = ViewModelProviders.of(this).get(RestPhotosViewModel::class.java)
+        val viewModel = ViewModelProviders.of(this).get(PhotosRestViewModel::class.java)
         viewModel.livePhotos.observe(this, this)
-        viewModel.getPhotos(PhotosRestDataSource())
+        viewModel.getPhotos()
     }
 
     override fun onChanged(state: LiveState<List<Photo>?>?) {
