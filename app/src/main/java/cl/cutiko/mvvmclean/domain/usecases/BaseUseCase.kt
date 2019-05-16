@@ -1,16 +1,15 @@
 package cl.cutiko.mvvmclean.domain.usecases
 
-import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
 
-abstract class BaseUseCase<Result, LiveResult : MutableLiveData<LiveState<Result>>> {
+abstract class BaseUseCase<Result> {
 
     private val superVisorJob = SupervisorJob()
     private val scope = CoroutineScope(Dispatchers.Main + superVisorJob)
 
     protected abstract suspend fun doWork() : Result
 
-    fun backgroundWork(liveResult: LiveResult) = scope.launch {
+    fun backgroundWork(liveResult: LiveResult<Result>) = scope.launch {
         liveResult.value = LiveState.Loading()
         runCatching {
             withContext(Dispatchers.IO) {doWork() }
