@@ -1,13 +1,13 @@
 package cl.cutiko.mvvmclean.presentation.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import cl.cutiko.mvvmclean.R
 import cl.cutiko.mvvmclean.domain.viewmodels.PhotosRestViewModel
 import cl.cutiko.mvvmclean.domain.viewmodels.PhotosRtdViewModel
+import cl.cutiko.mvvmclean.presentation.animations.crossFade
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -33,11 +33,11 @@ class MainActivity : AppCompatActivity(),  BottomNavigationView.OnNavigationItem
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.navigation_home -> {
-                Log.d("CUTIKO_TAG", "${this::javaClass.get().simpleName}: home")
+                crossFade(restContainer, rtdContainer)
                 return true
             }
             R.id.navigation_notifications -> {
-                Log.d("CUTIKO_TAG", "${this::javaClass.get().simpleName}: notifications")
+                crossFade(rtdContainer, restContainer)
                 return true
             }
         }
