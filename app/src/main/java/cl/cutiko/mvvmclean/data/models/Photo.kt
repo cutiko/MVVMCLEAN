@@ -11,10 +11,10 @@ data class Photo(
     var views: Long = 0,
     var download: Long = 0
 ) {
-    val safeDesciption : String?
-        get() : String? = when {
-            alt_description != null -> alt_description
-            description != null -> description
-            else -> ""
-        }
+
+    fun safeDescription(fallback : String) = when {
+        alt_description != null -> alt_description
+        description != null -> description
+        else -> fallback
+    }
 }

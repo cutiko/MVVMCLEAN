@@ -13,6 +13,7 @@ import cl.cutiko.mvvmclean.presentation.views.LazyImageView
 class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotoHolder>() {
 
     private val photos = arrayListOf<Photo>()
+    private lateinit var fallbackText : String
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item_photo, parent, false)
@@ -21,7 +22,8 @@ class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotoHolder>() {
 
     override fun onBindViewHolder(holder: PhotoHolder, position: Int) {
         val photo = photos[position]
-        holder.setView(photo)
+        if (!::fallbackText.isInitialized) fallbackText = holder.itemView.context.getString(R.string.no_description)
+        holder.setView(photo, fallbackText)
     }
 
     override fun getItemCount(): Int = photos.size
@@ -40,9 +42,9 @@ class PhotosAdapter : RecyclerView.Adapter<PhotosAdapter.PhotoHolder>() {
         private val lazyIv  = itemView.findViewById<LazyImageView>(R.id.lazyIv)
         private val textView = itemView.findViewById<TextView>(R.id.descriptionTv)
 
-        fun setView(photo: Photo) {
+        fun setView(photo: Photo, fallbackText : String) {
             lazyIv.setImage(photo.urls?.regular)
-            textView.text = photo.safeDesciption
+            textView.text = photo.safeDescription(fallbackText)
             textView.setBackgroundColor(Color.parseColor(photo.color))
         }
 
