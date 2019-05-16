@@ -1,5 +1,9 @@
 package cl.cutiko.mvvmclean.domain.usecases
 
+import androidx.lifecycle.MutableLiveData
+
+typealias LiveResult<Result> = MutableLiveData<LiveState<Result>>
+
 sealed class LiveState<Result> {
 
     data class OnSuccess<Result>(val result : Result) : LiveState<Result>()
