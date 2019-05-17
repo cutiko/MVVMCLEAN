@@ -1,5 +1,6 @@
 package cl.cutiko.mvvmclean.presentation.main
 
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.view.View
 import android.widget.TextView
@@ -22,7 +23,7 @@ class PhotoHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         lazyIv.setImage(photo.urls?.regular)
         textView.text = photo.safeDescription(fallbackText)
         val color = Color.parseColor(photo.color)
-        textView.setBackgroundColor(color)
+        textView.backgroundTintList = ColorStateList.valueOf(color)
         val swatch = Palette.Swatch(color, DEFAULT_PIXELS)
         textView.setTextColor(swatch.titleTextColor)
     }
