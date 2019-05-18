@@ -1,6 +1,3 @@
 <resources>
     <string name="app_name">MVVMCLEAN</string>
-    <string name="rest" translatable="false">REST</string>
-    <string name="rtd" translatable="false">RTD</string>
-    <string name="no_description">No available description</string>
 </resources>
