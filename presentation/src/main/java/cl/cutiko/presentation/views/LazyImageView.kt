@@ -1,4 +1,4 @@
-package cl.cutiko.photoslist.views
+package cl.cutiko.presentation.views
 
 import android.content.Context
 import android.util.AttributeSet
@@ -6,8 +6,8 @@ import android.view.Gravity
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.ProgressBar
-import cl.cutiko.photoslist.R
-import cl.cutiko.photoslist.animations.crossFade
+import cl.cutiko.presentation.R
+import cl.cutiko.presentation.animations.crossFade
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 

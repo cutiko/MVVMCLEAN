@@ -8,7 +8,7 @@ import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.RecyclerView
 import cl.cutiko.photomodel.Photo
 import cl.cutiko.photoslist.R
-import cl.cutiko.photoslist.views.LazyImageView
+import cl.cutiko.presentation.views.LazyImageView
 
 class PhotoHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

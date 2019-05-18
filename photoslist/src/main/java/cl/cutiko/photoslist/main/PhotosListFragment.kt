@@ -13,7 +13,7 @@ import cl.cutiko.photomodel.Photo
 import cl.cutiko.photosdomain.usecases.LiveState
 import cl.cutiko.photosdomain.viewmodels.PhotosViewModel
 import cl.cutiko.photoslist.R
-import cl.cutiko.photoslist.animations.crossFade
+import cl.cutiko.presentation.animations.crossFade
 import kotlinx.android.synthetic.main.fragment_photos_list.*
 
 

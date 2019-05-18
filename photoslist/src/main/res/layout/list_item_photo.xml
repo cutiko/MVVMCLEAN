@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <cl.cutiko.photoslist.views.LazyImageView
+    <cl.cutiko.presentation.views.LazyImageView
         android:id="@+id/lazyIv"
         android:layout_width="0dp"
         android:layout_height="0dp"

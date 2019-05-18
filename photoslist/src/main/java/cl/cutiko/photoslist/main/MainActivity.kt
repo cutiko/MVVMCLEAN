@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProviders
 import cl.cutiko.photosdomain.viewmodels.PhotosRestViewModel
 import cl.cutiko.photosdomain.viewmodels.PhotosRtdViewModel
 import cl.cutiko.photoslist.R
-import cl.cutiko.photoslist.animations.crossFade
+import cl.cutiko.presentation.animations.crossFade
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 

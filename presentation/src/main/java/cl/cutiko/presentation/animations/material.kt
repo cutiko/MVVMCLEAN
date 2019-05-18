@@ -1,4 +1,4 @@
-package cl.cutiko.photoslist.animations
+package cl.cutiko.presentation.animations
 
 import android.animation.Animator
 import android.view.View
