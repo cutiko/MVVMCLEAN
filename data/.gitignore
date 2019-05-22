@@ -1,1 +1,3 @@
 /build
+#Firebase secrets for testing
+firebase.properties
