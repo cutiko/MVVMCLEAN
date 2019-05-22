@@ -2,9 +2,9 @@ package cl.cutiko.photosdomain.viewmodels
 
 import androidx.lifecycle.ViewModel
 import cl.cutiko.data.repository.PhotosDataSource
+import cl.cutiko.domain.usecases.LiveResult
 import cl.cutiko.models.Photo
 import cl.cutiko.photosdomain.usecases.GetPhotosUseCase
-import cl.cutiko.photosdomain.usecases.LiveResult
 
 abstract class PhotosViewModel : ViewModel() {
 

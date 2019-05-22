@@ -1,4 +1,4 @@
-package cl.cutiko.photosdomain.usecases
+package cl.cutiko.domain.usecases
 
 import androidx.lifecycle.MutableLiveData
 
