@@ -16,10 +16,25 @@ android {
     }
 
     buildTypes {
+        debug {
+            def fireFile = rootProject.file("./data/firebase.properties")
+            def fireProperties = new Properties()
+            fireProperties.load(new FileInputStream(fireFile))
+
+            buildConfigField "String", "applicationId", fireProperties['applicationId']
+            buildConfigField "String", "apiKey", fireProperties['apiKey']
+            buildConfigField "String", "projectId", fireProperties['projectId']
+            buildConfigField "String", "databaseUrl", fireProperties['databaseUrl']
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    /*TODO There should be a way to make this project scope, it is duplicated on app module*/
+    packagingOptions {
+        exclude 'META-INF/atomicfu.kotlin_module'
     }
 
 }
