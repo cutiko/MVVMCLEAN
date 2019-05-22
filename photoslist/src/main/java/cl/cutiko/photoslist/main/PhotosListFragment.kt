@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import cl.cutiko.photomodel.Photo
+import cl.cutiko.models.Photo
 import cl.cutiko.photosdomain.usecases.LiveState
 import cl.cutiko.photosdomain.viewmodels.PhotosViewModel
 import cl.cutiko.photoslist.R

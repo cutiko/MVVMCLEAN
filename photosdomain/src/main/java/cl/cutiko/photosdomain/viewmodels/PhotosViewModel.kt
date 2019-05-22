@@ -1,8 +1,8 @@
 package cl.cutiko.photosdomain.viewmodels
 
 import androidx.lifecycle.ViewModel
-import cl.cutiko.photomodel.Photo
-import cl.cutiko.photosdata.repository.PhotosDataSource
+import cl.cutiko.data.repository.PhotosDataSource
+import cl.cutiko.models.Photo
 import cl.cutiko.photosdomain.usecases.GetPhotosUseCase
 import cl.cutiko.photosdomain.usecases.LiveResult
 

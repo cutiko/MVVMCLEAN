@@ -3,7 +3,7 @@ package cl.cutiko.photoslist.main;
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import cl.cutiko.photomodel.Photo
+import cl.cutiko.models.Photo
 import cl.cutiko.photoslist.R
 
 class PhotosAdapter : RecyclerView.Adapter<PhotoHolder>() {

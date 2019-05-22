@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.RecyclerView
-import cl.cutiko.photomodel.Photo
+import cl.cutiko.models.Photo
 import cl.cutiko.photoslist.R
 import cl.cutiko.presentation.views.LazyImageView
 

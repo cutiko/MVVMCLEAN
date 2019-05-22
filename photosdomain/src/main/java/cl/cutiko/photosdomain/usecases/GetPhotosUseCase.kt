@@ -1,9 +1,9 @@
 package cl.cutiko.photosdomain.usecases
 
 
-import cl.cutiko.photomodel.Photo
-import cl.cutiko.photosdata.repository.PhotosDataSource
-import cl.cutiko.photosdata.repository.PhotosRepository
+import cl.cutiko.data.repository.PhotosDataSource
+import cl.cutiko.data.repository.PhotosRepository
+import cl.cutiko.models.Photo
 
 class GetPhotosUseCase(private val photosDataSource: PhotosDataSource) : BaseUseCase<List<Photo>?>() {
 
