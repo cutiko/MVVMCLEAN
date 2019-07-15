@@ -19,7 +19,6 @@ android {
         }
     }
 
-    //TODO see if this is still needed
     packagingOptions {
         exclude 'META-INF/atomicfu.kotlin_module'
     }
