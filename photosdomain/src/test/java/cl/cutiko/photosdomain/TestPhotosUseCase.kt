@@ -6,7 +6,7 @@ import cl.cutiko.domain.usecases.LiveResult
 import cl.cutiko.domain.usecases.LiveState
 import cl.cutiko.models.Photo
 import cl.cutiko.photosdomain.usecases.GetPhotosUseCase
-import junit.framework.Assert.assertNotNull
+import junit.framework.Assert.assertNotSame
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.runBlocking
@@ -34,7 +34,7 @@ class TestPhotosUseCase {
         val liveResult = LiveResult<List<Photo>?>()
         runBlocking { GetPhotosUseCase(restSource).backgroundWork(liveResult).join() }
         val result = liveResult.value as LiveState.OnSuccess<List<Photo>?>
-        assertNotNull(result.result)
+        assertNotSame(0, result.result?.size)
     }
 
     @After
