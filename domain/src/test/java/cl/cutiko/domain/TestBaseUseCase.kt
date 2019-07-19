@@ -1,17 +1,30 @@
 package cl.cutiko.domain
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import cl.cutiko.domain.usecases.BaseUseCase
 import cl.cutiko.domain.usecases.LiveResult
 import cl.cutiko.domain.usecases.LiveState
-import junit.framework.TestCase.assertTrue
-import junit.framework.TestCase.fail
+import junit.framework.Assert.assertTrue
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.newSingleThreadContext
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.setMain
+import org.junit.After
+import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
+
 
 class TestBaseUseCase {
 
-    private val liveResult = LiveResult<Boolean>()
-    private val baseUseCase = object : BaseUseCase<Boolean>() {
-        override suspend fun doWork() = true
+    @get:Rule
+    val instantTaskExecutorRule = InstantTaskExecutorRule()
+    private val mainThreadSurrogate = newSingleThreadContext("UI thread")
+
+    @Before
+    fun setUp() {
+        Dispatchers.setMain(mainThreadSurrogate)
     }
 
     @Test
@@ -19,46 +32,30 @@ class TestBaseUseCase {
         val baseUseCase = object : BaseUseCase<Boolean>() {
             override suspend fun doWork() = true
         }
-        baseUseCase.backgroundWork(liveResult)
-        when (liveResult.value) {
-            is LiveState.Loading -> fail("Result was loading, should be true")
-            is LiveState.OnError -> fail("Result was error should be true")
-            is LiveState.OnSuccess -> {
-                val result = (liveResult.value as LiveState.OnSuccess<Boolean>).result
-                assertTrue(result)
-            }
+        val liveResult = LiveResult<Boolean>()
+        runBlocking {
+            baseUseCase.backgroundWork(liveResult).join()
         }
-    }
-
-    @Test
-    fun testLoading() {
-
-        baseUseCase.backgroundWork(liveResult)
-        when (liveResult.value) {
-            is LiveState.Loading -> fail("Result was loading, should be true")
-            is LiveState.OnError -> fail("Result was error should be true")
-            is LiveState.OnSuccess -> {
-                val result = (liveResult.value as LiveState.OnSuccess<Boolean>).result
-                assertTrue(result)
-            }
-        }
+        val result = liveResult.value as LiveState.OnSuccess<Boolean>
+        assertTrue(result.result)
     }
 
     @Test
     fun testError() {
         val baseUseCase = object : BaseUseCase<Boolean>() {
-            override suspend fun doWork() = true
+            override suspend fun doWork() = throw Exception("This has successfully failed")
         }
-        baseUseCase.backgroundWork(liveResult)
-        when (liveResult.value) {
-            is LiveState.Loading -> fail("Result was loading, should be true")
-            is LiveState.OnError -> fail("Result was error should be true")
-            is LiveState.OnSuccess -> {
-                val result = (liveResult.value as LiveState.OnSuccess<Boolean>).result
-                assertTrue(result)
-            }
+        val liveResult = LiveResult<Boolean>()
+        runBlocking {
+            baseUseCase.backgroundWork(liveResult).join()
         }
+        assertTrue(liveResult.value is LiveState.OnError)
     }
 
+    @After
+    fun cleanUp() {
+        Dispatchers.resetMain()
+        mainThreadSurrogate.close()
+    }
 
 }
