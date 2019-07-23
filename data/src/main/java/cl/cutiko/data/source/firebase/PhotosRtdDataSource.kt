@@ -31,7 +31,7 @@ class PhotosRtdDataSource : PhotosDataSource {
      * Firebase app has to be initialized manually because this is not the app module
      * Testing need to use this, in different modules, is better to solve it here than to carry a dependency around
      */
-    @VisibleForTesting
+    @VisibleForTesting(otherwise = VisibleForTesting.NONE)
     fun initializeFirebase(context: Context) {
         val NO_APPS = 0
         when (FirebaseApp.getApps(context).size) {
