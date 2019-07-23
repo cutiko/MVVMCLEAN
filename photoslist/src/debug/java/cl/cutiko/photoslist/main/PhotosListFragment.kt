@@ -12,7 +12,6 @@ class PhotosListFragment : BasePhotosListFragment() {
 
         private const val IDLING_NAME = "cl.cutiko.photoslist.main.PhotosListFragment.IDLING_NAME"
 
-        @JvmStatic
         val idlingResource = CountingIdlingResource(IDLING_NAME)
 
         @JvmStatic
@@ -30,6 +29,7 @@ class PhotosListFragment : BasePhotosListFragment() {
         if (state !is LiveState.Loading) {
             //If another decrement is added the counter will be corrupted as expected
             idlingResource.decrement()
+            Log.d("CUTIKO_TAG", "DECREMENT")
         }
 
         if (state != null) {

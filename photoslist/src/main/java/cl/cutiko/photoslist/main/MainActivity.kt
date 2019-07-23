@@ -20,14 +20,14 @@ class MainActivity : AppCompatActivity(),  BottomNavigationView.OnNavigationItem
         val restViewModel = ViewModelProviders.of(this).get(PhotosRestViewModel::class.java)
         val rtdViewModel = ViewModelProviders.of(this).get(PhotosRtdViewModel::class.java)
         val restPhotos = PhotosListFragment.newInstance()
-        val rtdPhotos = PhotosListFragment.newInstance()
+        //val rtdPhotos = PhotosListFragment.newInstance()
         val transaction = supportFragmentManager.beginTransaction().disallowAddToBackStack()
         transaction
             .add(R.id.restContainer, restPhotos)
-            .add(R.id.rtdContainer, rtdPhotos)
+            //.add(R.id.rtdContainer, rtdPhotos)
             .commitNowAllowingStateLoss()
         restPhotos.setViewModel(restViewModel)
-        rtdPhotos.setViewModel(rtdViewModel)
+        //rtdPhotos.setViewModel(rtdViewModel)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

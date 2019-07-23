@@ -17,6 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
+        android:visibility="gone"
         android:indeterminate="true"
         android:id="@+id/photosPb"
         style="?android:attr/progressBarStyleHorizontal"
