@@ -1,5 +1,6 @@
 package cl.cutiko.domain.usecases
 
+import android.util.Log
 import kotlinx.coroutines.*
 
 abstract class BaseUseCase<Result> {
@@ -10,7 +11,8 @@ abstract class BaseUseCase<Result> {
     protected abstract suspend fun doWork() : Result
 
     fun backgroundWork(liveResult: LiveResult<Result>) = scope.launch {
-        liveResult.value = LiveState.Loading()
+        Log.d("CUTIKO_TAG", "${this::javaClass.get().simpleName}: background work")
+        liveResult.postValue(LiveState.Loading())
         runCatching {
             withContext(Dispatchers.IO) {doWork() }
         }.onSuccess { result -> liveResult.postValue(LiveState.OnSuccess(result))

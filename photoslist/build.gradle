@@ -48,9 +48,11 @@ dependencies {
     androidTestImplementation 'androidx.test:core:1.2.0'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.2.0'
+    androidTestImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.2.0'
+    androidTestImplementation "android.arch.core:core-testing:1.1.1"
     //Using this as androidTestImplementation won't work and the androidx.test depedency must be included otherwise clash with project annotations
     debugImplementation('androidx.fragment:fragment-testing:1.1.0-rc03') {
         exclude group: 'androidx.test'
     }
-
 }

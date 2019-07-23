@@ -49,6 +49,7 @@ abstract class BasePhotosListFragment : Fragment(), Observer<LiveState<List<Phot
             is LiveState.Loading -> Log.d("CUTIKO_TAG", "PhotosListFragment: -----LOADING-----")
             is LiveState.OnError -> Log.d("CUTIKO_TAG", "PhotosListFragment: ******ERROR******")
             is LiveState.OnSuccess -> {
+                //This throw thread exception for testing
                 adapter.update(state.result)
                 crossFade(photosRv, photosPb)
             }
