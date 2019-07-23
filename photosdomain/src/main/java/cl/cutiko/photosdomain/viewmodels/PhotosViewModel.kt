@@ -1,5 +1,6 @@
 package cl.cutiko.photosdomain.viewmodels
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import cl.cutiko.data.repository.PhotosDataSource
 import cl.cutiko.domain.usecases.LiveResult
@@ -11,6 +12,8 @@ abstract class PhotosViewModel : ViewModel() {
     protected abstract val dataSource : PhotosDataSource
     private val _livePhotos = LiveResult<List<Photo>?>()
     val livePhotos = _livePhotos
+    @VisibleForTesting(otherwise = VisibleForTesting.NONE)
+    val mutablePhotos = _livePhotos
 
     fun getPhotos() {
         GetPhotosUseCase(dataSource).backgroundWork(_livePhotos)
