@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.CallSuper
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,12 +18,7 @@ import cl.cutiko.presentation.animations.crossFade
 import kotlinx.android.synthetic.main.fragment_photos_list.*
 
 
-class PhotosListFragment : Fragment(), Observer<LiveState<List<Photo>?>> {
-
-    companion object {
-        @JvmStatic
-        fun newInstance() = PhotosListFragment()
-    }
+abstract class BasePhotosListFragment : Fragment(), Observer<LiveState<List<Photo>?>> {
 
     private val adapter = PhotosAdapter()
 
@@ -41,11 +37,13 @@ class PhotosListFragment : Fragment(), Observer<LiveState<List<Photo>?>> {
         photosRv.adapter = adapter
     }
 
-    fun setViewModel(photosViewModel: PhotosViewModel) {
+    @CallSuper
+    open fun setViewModel(photosViewModel: PhotosViewModel) {
         photosViewModel.livePhotos.observe(this, this)
         photosViewModel.getPhotos()
     }
 
+    @CallSuper
     override fun onChanged(state: LiveState<List<Photo>?>?) {
         when(state) {
             is LiveState.Loading -> Log.d("CUTIKO_TAG", "PhotosListFragment: -----LOADING-----")

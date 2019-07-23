@@ -23,7 +23,15 @@ android {
         }
     }
 
+    packagingOptions {
+        exclude 'META-INF/atomicfu.kotlin_module'
+    }
+
 }
+
+/*configurations.all {
+    resolutionStrategy.force 'androidx.annotation:annotation:1.0.2'
+}*/
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -37,6 +45,12 @@ dependencies {
 
 
     testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:core:1.2.0'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    //Using this as androidTestImplementation won't work and the androidx.test depedency must be included otherwise clash with project annotations
+    debugImplementation('androidx.fragment:fragment-testing:1.1.0-rc03') {
+        exclude group: 'androidx.test'
+    }
+
 }
