@@ -18,9 +18,14 @@ import cl.cutiko.presentation.animations.crossFade
 import kotlinx.android.synthetic.main.fragment_photos_list.*
 
 
-abstract class BasePhotosListFragment : Fragment(), Observer<LiveState<List<Photo>?>> {
+class PhotosListFragment : Fragment(), Observer<LiveState<List<Photo>?>> {
 
     private val adapter = PhotosAdapter()
+
+    companion object {
+        @JvmStatic
+        fun newInstance() = PhotosListFragment()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
